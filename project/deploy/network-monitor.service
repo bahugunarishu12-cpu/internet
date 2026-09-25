@@ -1,0 +1,34 @@
+[Unit]
+Description=Network & Chrome Activity Monitor Production Service
+Documentation=https://github.com/
+After=network.target network-online.target mongod.service mongodb.service
+Wants=network-online.target
+# If MongoDB is installed locally on the system, systemd ensures it starts before this service
+After=mongod.service mongodb.service
+
+[Service]
+Type=simple
+User=root
+Group=root
+
+# The WorkingDirectory and ExecStart paths are dynamically configured during installation
+WorkingDirectory={{WORKING_DIRECTORY}}
+EnvironmentFile=-{{WORKING_DIRECTORY}}/.env
+
+# Execute FastAPI via Uvicorn within the isolated Python virtual environment
+ExecStart={{WORKING_DIRECTORY}}/venv/bin/uvicorn main:app --host 0.0.0.0 --port 8000 --workers 1 --log-level info
+
+# Automatic recovery: Restart immediately if FastAPI exits or crashes
+Restart=always
+RestartSec=5s
+
+# Security and resource limits
+KillMode=process
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=network-monitor
+LimitNOFILE=65536
+TimeoutStopSec=15
+
+[Install]
+WantedBy=multi-user.target

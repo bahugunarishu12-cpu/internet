@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Network & Chrome Activity Monitor - Authorized Extension",
+  "version": "1.0.0",
+  "description": "Authorized search query monitor for explicitly paired private network devices. Captures search keywords only; never intercepts passwords, HTTPS payloads, or personal messages.",
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "*://*.google.com/search*",
+    "*://*.bing.com/search*",
+    "*://duckduckgo.com/*",
+    "*://search.yahoo.com/search*",
+    "*://*.ecosia.org/search*",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Network & Chrome Activity Monitor"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

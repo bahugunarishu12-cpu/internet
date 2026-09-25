@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Network & Chrome Activity Monitor</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <div class="logo-row">
+      <div class="status-indicator" id="statusDot"></div>
+      <h3>Activity Monitor</h3>
+    </div>
+    <span class="badge" id="pairingBadge">Unpaired</span>
+  </div>
+
+  <div class="content">
+    <div class="privacy-notice">
+      <strong>Privacy Guard:</strong>
+      <p>Only search keywords on standard search engines are sent to your authorized private network. Passwords, cookies, form entries, and private messages are strictly excluded.</p>
+    </div>
+
+    <!-- Paired View -->
+    <div id="pairedSection" class="hidden">
+      <div class="info-card">
+        <div class="info-label">Paired Device ID</div>
+        <div class="info-val" id="displayDeviceId">-</div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">Device Name</div>
+        <div class="info-val" id="displayDeviceName">-</div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">Target Server</div>
+        <div class="info-val" id="displayServer">-</div>
+      </div>
+
+      <div class="toggle-row">
+        <label class="switch">
+          <input type="checkbox" id="consentToggle">
+          <span class="slider"></span>
+        </label>
+        <span class="toggle-label">Active Monitoring Consent</span>
+      </div>
+
+      <div class="incognito-note">
+        <strong>Incognito Note:</strong>
+        To allow in Incognito mode, Chrome requires you to manually check <em>"Allow in Incognito"</em> at <code>chrome://extensions</code>.
+      </div>
+
+      <button id="unpairBtn" class="btn btn-secondary">Unpair Device</button>
+    </div>
+
+    <!-- Setup View -->
+    <div id="setupSection">
+      <p class="subtitle">Enter the pairing code provided by your network administrator:</p>
+      
+      <div class="form-group">
+        <label for="serverUrlInput">Admin API URL:</label>
+        <input type="text" id="serverUrlInput" value="http://localhost:8000" placeholder="http://localhost:8000">
+      </div>
+
+      <div class="form-group">
+        <label for="pairingCodeInput">Pairing Code (e.g. PAIR-8F42K):</label>
+        <input type="text" id="pairingCodeInput" placeholder="PAIR-XXXXX" uppercase>
+      </div>
+
+      <div class="consent-agreement">
+        <input type="checkbox" id="initialConsentCheckbox">
+        <label for="initialConsentCheckbox">
+          I explicitly consent to sending my search engine queries to the private network administrator.
+        </label>
+      </div>
+
+      <button id="pairBtn" class="btn btn-primary" disabled>Pair Extension</button>
+      <div id="statusMessage" class="status-msg"></div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "Net & Chrome Monitor",
+  "description": "Network & Chrome Activity Monitor for authorized private networks with privacy-compliant domain and search tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
